@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-apollo-deployment
+  labels:
+    app: hello-apollo
+spec:
+  replicas: 1
+  # The selector field defines how the Deployment finds which Pods to manage.
+  selector:
+    matchLabels:
+      app: hello-apollo
+  template:
+    metadata:
+      labels:
+        app: hello-apollo
+    spec:
+      containers:
+      - name: hello-apollo-app
+        image: ananthrs/hello-k8s:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "300m"

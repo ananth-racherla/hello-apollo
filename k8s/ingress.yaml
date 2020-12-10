@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hello-apollo-ingress
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: hello-apollo.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello-apollo-svc
+          servicePort: 3000
